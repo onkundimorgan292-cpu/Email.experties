@@ -58,11 +58,13 @@
     .country-toggle p { display: flex; align-items: center; gap: 6px; }
     .country-toggle p i { font-size: 0.75rem; color: #2563eb; transition: transform 0.3s; }
     .country-toggle.active p i { transform: rotate(180deg); }
-    .country-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; margin-top: 10px; background: white; border-radius: 12px; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.1); border: 1px solid #eef2f6; width: 220px; position: absolute; z-index: 10; }
-    .country-list.show { max-height: 300px; opacity: 1; }
+    
+    .country-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; margin-top: 10px; background: white; border-radius: 12px; box-shadow: 0 10px 25px -10px rgba(0,0,0,0.15); border: 1px solid #eef2f6; width: 230px; position: absolute; z-index: 100; top: 100%; left: 0; }
+    .country-list.show { max-height: 350px; opacity: 1; }
     .country-list ul { list-style: none; padding: 10px 0; }
-    .country-list li { padding: 8px 16px; font-size: 0.9rem; color: #334155; display: flex; align-items: center; gap: 10px; font-weight: 500; }
-    .country-list li i { color: #94a3b8; font-size: 0.8rem; }
+    .country-list li { padding: 10px 16px; font-size: 0.9rem; color: #334155; display: flex; align-items: center; gap: 10px; font-weight: 500; border-bottom: 1px solid #f8fafc; }
+    .country-list li:last-child { border-bottom: none; }
+    .country-list li i { color: #10b981; font-size: 0.85rem; }
     .stat-wrapper { position: relative; }
 
     /* Hero Visual */
@@ -78,19 +80,19 @@
     .dot:nth-child(3) { animation: colorPulse3 3s infinite; }
     
     @keyframes colorPulse1 {
-      0%, 100% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; } /* Red */
-      33% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; }      /* Yellow */
-      66% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; }      /* Green */
+      0%, 100% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; } 
+      33% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; }      
+      66% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; }      
     }
     @keyframes colorPulse2 {
-      0%, 100% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; } /* Yellow */
-      33% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; }      /* Green */
-      66% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; }      /* Red */
+      0%, 100% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; } 
+      33% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; }      
+      66% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; }      
     }
     @keyframes colorPulse3 {
-      0%, 100% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; } /* Green */
-      33% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; }      /* Red */
-      66% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; }      /* Yellow */
+      0%, 100% { background-color: #27c93f; box-shadow: 0 0 5px #27c93f; } 
+      33% { background-color: #ff5f56; box-shadow: 0 0 5px #ff5f56; }      
+      66% { background-color: #ffbd2e; box-shadow: 0 0 5px #ffbd2e; }      
     }
 
     .email-subject { font-weight: 600; font-size: 0.9rem; color: #1e293b; }
@@ -229,7 +231,7 @@
       <div class="hero-visual">
         <div class="email-mock">
           <div class="email-header">
-            <!-- UPDATED LIVE ANIMATED DOTS -->
+            <!-- LIVE ANIMATED DOTS -->
             <div class="dots">
               <span class="dot"></span>
               <span class="dot"></span>
@@ -401,12 +403,4 @@
         document.addEventListener('click', (e) => {
           if (!floatMain.contains(e.target) && !floatOptions.contains(e.target)) {
             floatOptions.classList.remove('open');
-            floatMain.classList.remove('open');
-          }
-        });
-      }
-
-      // Interactive Country Dropdown
-      const countryToggle = document.getElementById('countryToggle');
-      const countryList = document.getElementById('countryList');
-      if (countryToggle &&
+            floatMain.classList
