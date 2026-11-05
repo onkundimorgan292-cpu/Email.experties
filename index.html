@@ -221,7 +221,6 @@
                 <li><i class="fas fa-check-circle"></i> Australia</li>
                 <li><i class="fas fa-check-circle"></i> Switzerland</li>
                 <li><i class="fas fa-check-circle"></i> United Arab Emirates</li>
-                <li><i class="fas fa-check-circle"></i> South Africa</li>
               </ul>
             </div>
           </div>
@@ -379,15 +378,20 @@
     </button>
   </div>
 
+  <!-- JAVASCRIPT FIXED AND FULLY CLOSED -->
   <script>
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
       // Mobile Menu
       const toggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       if (toggle && navLinks) {
-        toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-        navLinks.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => navLinks.classList.remove('active'));
+        toggle.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+          });
         });
       }
 
@@ -395,12 +399,12 @@
       const floatMain = document.getElementById('floatMain');
       const floatOptions = document.getElementById('floatOptions');
       if (floatMain && floatOptions) {
-        floatMain.addEventListener('click', (e) => {
+        floatMain.addEventListener('click', function(e) {
           e.stopPropagation();
           floatOptions.classList.toggle('open');
           floatMain.classList.toggle('open');
         });
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', function(e) {
           if (!floatMain.contains(e.target) && !floatOptions.contains(e.target)) {
             floatOptions.classList.remove('open');
-            floatMain.classList
+            floatMain
