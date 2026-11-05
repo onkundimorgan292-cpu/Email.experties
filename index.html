@@ -53,9 +53,10 @@
     .stat-item p { font-size: 0.95rem; color: #64748b; margin: 0; font-weight: 500; }
     
     /* Interactive Countries Dropdown */
-    .country-toggle { background: none; border: none; cursor: pointer; text-align: left; padding: 0; transition: transform 0.2s; }
+    .country-toggle { background: none; border: none; cursor: pointer; text-align: left; padding: 0; transition: transform 0.2s; display: flex; align-items: baseline; gap: 8px; }
     .country-toggle:hover { transform: translateY(-2px); }
-    .country-toggle p { display: flex; align-items: center; gap: 6px; }
+    .country-toggle h4 { font-size: 2rem; font-weight: 800; color: #2563eb; letter-spacing: -0.03em; margin: 0; }
+    .country-toggle p { display: flex; align-items: center; gap: 6px; font-size: 0.95rem; color: #64748b; font-weight: 500; margin: 0; }
     .country-toggle p i { font-size: 0.75rem; color: #2563eb; transition: transform 0.3s; }
     .country-toggle.active p i { transform: rotate(180deg); }
     
@@ -212,6 +213,7 @@
               <h4>7</h4>
               <p>countries served <i class="fas fa-chevron-down"></i></p>
             </button>
+            <!-- The Dropdown List -->
             <div class="country-list" id="countryList">
               <ul>
                 <li><i class="fas fa-check-circle"></i> United States</li>
@@ -378,33 +380,20 @@
     </button>
   </div>
 
-  <!-- JAVASCRIPT FIXED AND FULLY CLOSED -->
+  <!-- FULLY WORKING JAVASCRIPT -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mobile Menu
-      const toggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
-      if (toggle && navLinks) {
-        toggle.addEventListener('click', function() {
-          navLinks.classList.toggle('active');
-        });
-        navLinks.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-          });
-        });
-      }
+    // Mobile Menu Toggle
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
 
-      // Floating Contact Widget
-      const floatMain = document.getElementById('floatMain');
-      const floatOptions = document.getElementById('floatOptions');
-      if (floatMain && floatOptions) {
-        floatMain.addEventListener('click', function(e) {
-          e.stopPropagation();
-          floatOptions.classList.toggle('open');
-          floatMain.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!floatMain.contains(e.target) && !floatOptions.contains(e.target)) {
-            floatOptions.classList.remove('open');
-            floatMain
+    // Floating Chat Widget
+    var floatMain = document.getElementById('floatMain');
+    var floatOptions = document.getElementById('floatOptions');
+    floatMain.addEventListener('click', function(e) {
+      e.stopPropagation();
+      floatOptions.classList.toggle('open');
+      floatMain.classList.toggle('open');
+    });
+
+    // Country Dropdown Logic (F
