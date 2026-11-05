@@ -8,6 +8,58 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- SCRIPT LOADED IN HEAD SO IT NEVER GETS CUT OFF -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Country Dropdown Toggle
+      var toggle = document.getElementById("countryToggle");
+      var list = document.getElementById("countryList");
+      if (toggle && list) {
+        toggle.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          list.classList.toggle("show");
+          toggle.classList.toggle("active");
+        });
+      }
+
+      // 2. Close dropdown if clicking outside
+      document.addEventListener("click", function(e) {
+        if (toggle && list && !toggle.contains(e.target) && !list.contains(e.target)) {
+          list.classList.remove("show");
+          toggle.classList.remove("active");
+        }
+      });
+
+      // 3. Mobile Menu
+      var menuBtn = document.getElementById('menuToggle');
+      var nav = document.getElementById('navLinks');
+      if (menuBtn && nav) {
+        menuBtn.addEventListener('click', function() {
+          nav.classList.toggle('active');
+        });
+      }
+
+      // 4. Floating Chat Widget
+      var floatMain = document.getElementById('floatMain');
+      var floatOptions = document.getElementById('floatOptions');
+      if (floatMain && floatOptions) {
+        floatMain.addEventListener('click', function(e) {
+          e.stopPropagation();
+          floatOptions.classList.toggle('open');
+          floatMain.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!floatMain.contains(e.target) && !floatOptions.contains(e.target)) {
+            floatOptions.classList.remove('open');
+            floatMain.classList.remove('open');
+          }
+        });
+      }
+    });
+  </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e293b; line-height: 1.5; scroll-behavior: smooth; }
@@ -53,19 +105,19 @@
     .stat-item p { font-size: 0.95rem; color: #64748b; margin: 0; font-weight: 500; }
     
     /* Interactive Countries Dropdown */
-    .country-toggle { background: none; border: none; cursor: pointer; text-align: left; padding: 0; transition: transform 0.2s; display: flex; align-items: baseline; gap: 8px; }
+    .country-toggle { background: none; border: none; cursor: pointer; text-align: left; padding: 0; transition: transform 0.2s; display: flex; align-items: baseline; gap: 8px; outline: none; }
     .country-toggle:hover { transform: translateY(-2px); }
     .country-toggle h4 { font-size: 2rem; font-weight: 800; color: #2563eb; letter-spacing: -0.03em; margin: 0; }
     .country-toggle p { display: flex; align-items: center; gap: 6px; font-size: 0.95rem; color: #64748b; font-weight: 500; margin: 0; }
     .country-toggle p i { font-size: 0.75rem; color: #2563eb; transition: transform 0.3s; }
     .country-toggle.active p i { transform: rotate(180deg); }
     
-    .country-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; margin-top: 10px; background: white; border-radius: 12px; box-shadow: 0 10px 25px -10px rgba(0,0,0,0.15); border: 1px solid #eef2f6; width: 230px; position: absolute; z-index: 100; top: 100%; left: 0; }
+    .country-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease; opacity: 0; margin-top: 10px; background: white; border-radius: 12px; box-shadow: 0 15px 30px -10px rgba(0,0,0,0.15); border: 1px solid #eef2f6; width: 260px; position: absolute; z-index: 100; top: 100%; left: 0; }
     .country-list.show { max-height: 350px; opacity: 1; }
     .country-list ul { list-style: none; padding: 10px 0; }
-    .country-list li { padding: 10px 16px; font-size: 0.9rem; color: #334155; display: flex; align-items: center; gap: 10px; font-weight: 500; border-bottom: 1px solid #f8fafc; }
+    .country-list li { padding: 12px 18px; font-size: 0.95rem; color: #334155; display: flex; align-items: center; gap: 12px; font-weight: 500; border-bottom: 1px solid #f8fafc; }
     .country-list li:last-child { border-bottom: none; }
-    .country-list li i { color: #10b981; font-size: 0.85rem; }
+    .country-list li i { color: #10b981; font-size: 0.9rem; }
     .stat-wrapper { position: relative; }
 
     /* Hero Visual */
@@ -363,37 +415,4 @@
       <p style="margin-bottom: 12px;">Ready to turn your cold emails into warm clients?</p>
       <div class="footer-contacts">
         <a href="https://api.whatsapp.com/send?phone=254788245106&text=Hi%20I%20want%20to%20book%20an%20email%20project" target="_blank" rel="noopener" style="color:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp: +254 788 245 106</a>
-        <a href="mailto:onkundimorgan84@gmail.com" style="color:#EA4335;"><i class="fas fa-envelope"></i> onkundimorgan84@gmail.com</a>
-      </div>
-      <p style="margin-top: 24px; font-size: 0.8rem;">© 2025 Email Alchemy — Legit emails that grow businesses.</p>
-    </div>
-  </footer>
-
-  <!-- Floating Action Button -->
-  <div class="float-wrap">
-    <div class="float-options" id="floatOptions">
-      <a href="https://api.whatsapp.com/send?phone=254788245106&text=Hi%20I%20want%20to%20book%20an%20email%20project" target="_blank" rel="noopener" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a href="mailto:onkundimorgan84@gmail.com?subject=Email%20writing%20booking&body=Hi%2C%20I%20want%20to%20book%20an%20email%20package." style="background:#EA4335;"><i class="fas fa-envelope"></i> Gmail</a>
-    </div>
-    <button class="float-main" id="floatMain" aria-label="Contact options">
-      <i class="fas fa-comment-dots"></i>
-    </button>
-  </div>
-
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Country Dropdown Toggle
-      const countryToggle = document.getElementById("countryToggle");
-      const countryList = document.getElementById("countryList");
-
-      countryToggle.addEventListener("click", function(e) {
-        e.stopPropagation();
-        countryList.classList.toggle("show");
-        countryToggle.classList.toggle("active");
-      });
-
-      // Close dropdown if tapping outside
-      document.addEventListener("click", function(e) {
-        if (!countryToggle.contains(e.target) && !countryList.contains(e.target)) {
-          countryList.classList.remove("show");
+        <a href="mailto:onkundimorgan84@gmail.com" style="color:#EA4335;"><i class="fas fa-envelope"></i>
