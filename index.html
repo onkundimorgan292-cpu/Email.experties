@@ -380,20 +380,20 @@
     </button>
   </div>
 
-  <!-- FULLY WORKING JAVASCRIPT -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Mobile Menu Toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
+    document.addEventListener("DOMContentLoaded", function() {
+      // Country Dropdown Toggle
+      const countryToggle = document.getElementById("countryToggle");
+      const countryList = document.getElementById("countryList");
 
-    // Floating Chat Widget
-    var floatMain = document.getElementById('floatMain');
-    var floatOptions = document.getElementById('floatOptions');
-    floatMain.addEventListener('click', function(e) {
-      e.stopPropagation();
-      floatOptions.classList.toggle('open');
-      floatMain.classList.toggle('open');
-    });
+      countryToggle.addEventListener("click", function(e) {
+        e.stopPropagation();
+        countryList.classList.toggle("show");
+        countryToggle.classList.toggle("active");
+      });
 
-    // Country Dropdown Logic (F
+      // Close dropdown if tapping outside
+      document.addEventListener("click", function(e) {
+        if (!countryToggle.contains(e.target) && !countryList.contains(e.target)) {
+          countryList.classList.remove("show");
